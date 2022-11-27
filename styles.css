@@ -1,0 +1,20 @@
+* {
+    background-color:burlywood;
+    margin: 0;
+    padding: 0;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+    border: solid 1px;
+}
+
+.square {
+    aspect-ratio: 1/ 1;
+    display: flex;
+    align-items: center;
+    background-color: red; 
+    border: solid 1px; 
+    border-color: black;
+}
