@@ -1,20 +1,56 @@
 const grid = document.querySelector('.grid');
-const square = document.querySelector('.square');
+const squareClass = document.querySelector('.square');
+squareClass.addEventListener('mouseover', () => {
+    square.style.backgroundColor = 'yellow'
+});
+const btn = document.querySelector('.popup');
 
-// set attributes in CSS? For example: .grid{}; so that all divs created under it will be given parent attributes.
 
-for (let i = 2; i <= 256; ++i) {
+for (let i = 1; i <= 255; i++) {
     const square = document.createElement('div');
     square.classList.add('square');
     grid.appendChild(square);
     square.addEventListener('mouseover', () => {
         square.style.backgroundColor = 'yellow'
     });
- }
+};
+
+// How to reset the grid?
+// function to loop and remove all child nodes created?
+// create different class and switch class
+// foreach loop, arrayfrom()
+
+btn.addEventListener('click', () => {
+    gridArray.forEach(square => {
+            grid.removeChild(square);
+        });
+    const quantity = Number(prompt("How many squares do you want?", ""));
+    for (let i = 1; i <= quantity ** 2; i++) {
+        const square = document.createElement('div');
+        square.classList.add('square');
+        grid.appendChild(square);
+    grid.setAttribute('style', `grid-template-columns: repeat(${quantity},1fr); grid-template-rows: repeat(${quantity},1fr)`);
+    }
+});
+
+const gridSelect = grid.querySelectorAll('.square')
+const gridArray = Array.from(gridSelect);
+console.log(gridArray)
+
 
 
 
 /*
+
+for (let i = 1; i <= 255; i++) {
+    const square = document.createElement('div');
+    square.classList.add('square');
+    grid.appendChild(square);
+    square.addEventListener('mouseover', () => {
+        square.style.backgroundColor = 'yellow'
+    });
+};
+
 Create a webpage with a 16x16 grid of square divs.
 
 Create the divs using JavaScript. Don’t try making them by hand with copy and pasting in your HTML file!

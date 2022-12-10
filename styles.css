@@ -1,17 +1,36 @@
 * {
-    background-color:burlywood;
+    background-color:rgb(21, 10, 47);
     margin: 0;
     padding: 0;
+    text-align: center;
+    color: white;
+}
+
+.popup {
+    text-align: center;
+    justify-content: center;
 }
 
 .grid {
     display: grid;
     grid-template-columns: repeat(16, 1fr);
+    grid-template-rows: repeat(16, 1fr);
     border: solid 1px;
+    height: 500px;
+    width: 500px;
+}
+
+.grid-reset {
+    display: grid;
+    grid-template-columns: 0;
+    grid-template-rows: 0;
+    border: solid 1px;
+    height: 500px;
+    width: 500px;
 }
 
 .square {
-    aspect-ratio: 1/ 1;
+    aspect-ratio: 1/1;
     display: flex;
     align-items: center;
     background-color: red; 
