@@ -20,15 +20,6 @@
     width: 500px;
 }
 
-.grid-reset {
-    display: grid;
-    grid-template-columns: 0;
-    grid-template-rows: 0;
-    border: solid 1px;
-    height: 500px;
-    width: 500px;
-}
-
 .square {
     aspect-ratio: 1/1;
     display: flex;

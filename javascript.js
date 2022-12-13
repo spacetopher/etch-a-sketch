@@ -1,12 +1,20 @@
 const grid = document.querySelector('.grid');
 const squareClass = document.querySelector('.square');
-squareClass.addEventListener('mouseover', () => {
-    square.style.backgroundColor = 'yellow'
-});
 const btn = document.querySelector('.popup');
+const defaultQuantity = 256;
 
+function getQuantity() {
+    const quantity = Number(prompt("How many squares do you want per side?", "1 - 100 squares")
+    );
+    for (let i = 1; i <= quantity ** 2; i++) {
+        const square = document.createElement('div');
+        square.classList.add('square');
+        grid.appendChild(square);
+        square.setAttribute('style', `grid-template-columns: repeat(${quantity},1fr); grid-template-rows: repeat(${quantity},1fr)`);
+    };
+};
 
-for (let i = 1; i <= 255; i++) {
+for (let i = 1; i <= defaultQuantity; i++) {
     const square = document.createElement('div');
     square.classList.add('square');
     grid.appendChild(square);
@@ -15,11 +23,48 @@ for (let i = 1; i <= 255; i++) {
     });
 };
 
-// How to reset the grid?
-// function to loop and remove all child nodes created?
-// create different class and switch class
-// foreach loop, arrayfrom()
 
+btn.addEventListener('click', () => {
+    gridArray.forEach(square => {
+        grid.removeChild(square);
+    })
+    getQuantity();
+});
+
+const gridSelect = grid.querySelectorAll('.square')
+const gridArray = Array.from(gridSelect);
+
+
+/*
+1. hit button
+2. erase grid
+3. input number of squares
+4. 
+const quantity = () => {
+    Number(prompt("How many squares do you want per side?", "1 - 100 squares")
+    );
+    
+    for (let i = 1; i <= quantity ** 2; i++) {
+        const square = document.createElement('div');
+        grid.appendChild(square);
+    gridArray.setAttribute('style', `grid-template-columns: repeat(${quantity},1fr); grid-template-rows: repeat(${quantity},1fr)`);
+    }
+    
+};
+
+let gridSquares = 16;
+
+WHEN PAGE LOADS...
+for (let i = 1; i <= gridSquares**2; i++) {
+    const square = document.createElement('div');
+    square.classList.add('square');
+    grid.appendChild(square);
+    square.addEventListener('mouseover', () => {
+        square.style.backgroundColor = 'yellow'
+    });
+};
+
+FUNCTION WHEN BUTTON CLICKED...
 btn.addEventListener('click', () => {
     gridArray.forEach(square => {
             grid.removeChild(square);
@@ -33,23 +78,8 @@ btn.addEventListener('click', () => {
     }
 });
 
-const gridSelect = grid.querySelectorAll('.square')
-const gridArray = Array.from(gridSelect);
-console.log(gridArray)
 
 
-
-
-/*
-
-for (let i = 1; i <= 255; i++) {
-    const square = document.createElement('div');
-    square.classList.add('square');
-    grid.appendChild(square);
-    square.addEventListener('mouseover', () => {
-        square.style.backgroundColor = 'yellow'
-    });
-};
 
 Create a webpage with a 16x16 grid of square divs.
 
