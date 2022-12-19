@@ -1,43 +1,92 @@
 const grid = document.querySelector('.grid');
-const squareClass = document.querySelector('.square');
-const btn = document.querySelector('.popup');
-const defaultQuantity = 256;
+const container = document.querySelector('.container');
 
-function getQuantity() {
-    const quantity = Number(prompt("How many squares do you want per side?", "1 - 100 squares")
-    );
-    for (let i = 1; i <= quantity ** 2; i++) {
+const btn = document.querySelector('.popup');
+let quantity = 16;
+container.appendChild(grid);
+
+
+function loadGrid() {
+const quantity = Number(prompt("How many squares do you want per side?", "1 - 100 squares")
+);
+if (quantity < 1 || quantity > 100 || quantity == '' || quantity == "1 - 100 squares")  loadGrid();
+const grid = document.createElement('div');
+grid.classList.add('grid');
+container.appendChild(grid);
+    for (let i = 0; i < quantity ** 2; i++) {
         const square = document.createElement('div');
         square.classList.add('square');
         grid.appendChild(square);
-        square.setAttribute('style', `grid-template-columns: repeat(${quantity},1fr); grid-template-rows: repeat(${quantity},1fr)`);
+        grid.setAttribute('style', `grid-template-columns: repeat(${quantity},1fr); grid-template-rows: repeat(${quantity},1fr)`);
+        square.addEventListener('mouseover', () => {
+            square.style.backgroundColor = 'yellow'
+        });
     };
 };
 
-for (let i = 1; i <= defaultQuantity; i++) {
+function removeAllChildNodes() {
+    if (grid.childElementCount > 0) {
+        grid.removeChild(square);
+    }
+}
+
+btn.addEventListener('click', () => {
+    while (container.childElementCount > 0) {
+        container.removeChild(container.firstChild);
+    };
+    loadGrid();
+});
+
+for (let i = 0; i < quantity ** 2; i++) {
     const square = document.createElement('div');
     square.classList.add('square');
     grid.appendChild(square);
+    grid.setAttribute('style', `grid-template-columns: repeat(${quantity},1fr); grid-template-rows: repeat(${quantity},1fr)`);
     square.addEventListener('mouseover', () => {
         square.style.backgroundColor = 'yellow'
     });
+
+
 };
-
-
-btn.addEventListener('click', () => {
-    gridArray.forEach(square => {
-        grid.removeChild(square);
-    })
-    getQuantity();
-});
-
-const gridSelect = grid.querySelectorAll('.square')
-const gridArray = Array.from(gridSelect);
-
+console.log(container.firstElementChild);
 
 /*
-1. hit button
-2. erase grid
+id gridOrig/gridMod
+
+function loadGrid() {
+    var divs = document.getElementsByTagName('div');
+    for(var i = divs.length; i-- ;) {
+        var div = divs[i];
+        if(div.className === 'response') {
+            div.style.display = 'none';
+        }
+    }
+}
+if grid == undefined (would indicate grid not in place)
+if no grid no squares
+else if grid
+what is the condition for running prompt? after initial grid button is pressed
+special ID 1 for first grid load
+special ID 2 for prompted grid loads
+if DIV has special ID 1, don't run prompt
+if DIV has special ID 2, run prompt
+ideas---
+-switch between css files, toggle css selectors
+-removechild not working because parent-child relationships are in diff scopes (global vs function)
+-2 similar functions, 1 to load beginning page, 1 to load after prompt 
+-need to include function to remove squares and create grid in same function    
+-node 'square' not being recognized as a child of 'grid'
+-try creating everything inside function
+-try with adding all divs in html doc
+
+
+Array.from(grid).forEach(square => {
+        Array.from(grid).removeChild(square);
+    });
+1. page load with loadGrid();
+2. click button 
+    -removeSquare();
+    -getQuantity() (include loadGrid());
 3. input number of squares
 4. 
 const quantity = () => {
